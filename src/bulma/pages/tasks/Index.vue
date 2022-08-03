@@ -44,6 +44,13 @@
                     </template>
                 </dropdown>
             </template>
+            <template #status="{ column, row }">
+                <span 
+                    class="tag is-table-tag "
+                    :class="cssClass(column.enum, row)">
+                    {{ column.enum._get(row.status) }}
+                </span>
+            </template>
             <template #reminder="{ row }">
                 <dropdown :triggers="['click']"
                     :auto-hide="false"
@@ -95,13 +102,6 @@
                     :user="row.allocatedTo"
                     v-else/>
             </template>
-            <template #completed="{ row }">
-                <div class="is-flex is-justify-content-center">
-                    <vue-switch class="is-medium"
-                        v-model="row.completed"
-                        @update:model-value="update(row.id, 'completed', row.completed)"/>
-                </div>
-            </template>
             <template #createdBy="{ row: { createdBy } }">
                 <avatar class="is-24x24"
                     :user="createdBy"/>
@@ -131,6 +131,7 @@ import { Dropdown } from 'v-tooltip';
 import { clickOutside } from '@enso-ui/directives';
 import Filters from './components/Filters.vue';
 import Flags from './components/Flags.vue';
+import cssClass from '../../modules/task';
 
 library.add(faClock, faInfoCircle, faCog);
 
@@ -159,7 +160,7 @@ export default {
         ready: false,
         filters: {
             tasks: {
-                completed: false,
+                status: 1,
                 flag: null,
                 allocated_to: null,
             },
@@ -205,6 +206,9 @@ export default {
                 }
             });
         },
+        cssClass(columnEnum, row) {
+            return cssClass(columnEnum, row);
+        }
     },
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
     <div class="columns is-centered is-multiline">
-        <div class="column is-narrow">
-            <enso-select-filter class="box raises-on-hover allocation-filter"
+        <div class="column is-narrow is-one-fifth">
+            <enso-select-filter class="box raises-on-hover"
                 v-model="filters.tasks.allocated_to"
                 source="administration.users.options"
                 label="person.name"
@@ -14,11 +14,12 @@
                 :options="flagOptions"
                 :name="i18n('Importance')"/>
         </div>
-        <div class="column is-narrow">
-            <boolean-filter class="box raises-on-hover"
-                v-model="filters.tasks.completed"
-                icons
-                :name="i18n('Completed')"/>
+        <div class="column is-narrow is-2">
+            <enso-select-filter
+                class="box raises-on-hover"
+                v-model="filters.tasks.status"
+                :options="enums.statuses._select()" 
+                :name="i18n('Status')"/>
         </div>
         <div class="column is-narrow">
             <enso-filter class="box raises-on-hover"
@@ -27,8 +28,10 @@
                 :options="overdueOptions"
                 :name="i18n('Overdue')"/>
         </div>
+    </div>
+    <div class="columns is-centered">
         <div class="column is-narrow">
-            <enso-date-filter class="box raises-on-hover"
+            <enso-date-filter class="box raises-on-hover" 
                 v-model:filter="params.dateFilter"
                 v-model:interval="intervals.tasks.reminder"/>
         </div>
@@ -42,6 +45,7 @@ import {
 } from '@enso-ui/filters/bulma';
 import { faFlag, faExclamation } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { EnsoSelect } from '@enso-ui/select/bulma';
 
 library.add(faFlag, faExclamation);
 
@@ -49,7 +53,7 @@ export default {
     name: 'Filters',
 
     components: {
-        BooleanFilter, EnsoDateFilter, EnsoFilter, EnsoSelectFilter,
+        BooleanFilter, EnsoDateFilter, EnsoFilter, EnsoSelectFilter, EnsoSelect
     },
 
     inject: ['i18n'],
@@ -91,7 +95,4 @@ export default {
 </script>
 
 <style lang="scss">
-.allocation-filter {
-    width: 250px;
-}
 </style>
