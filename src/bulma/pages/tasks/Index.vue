@@ -45,7 +45,8 @@
                 </dropdown>
             </template>
             <template #status="{ column, row }">
-                <span class="tag is-table-tag "
+                <span 
+                    class="tag is-table-tag "
                     :class="cssClass(column.enum, row)">
                     {{ column.enum._get(row.status) }}
                 </span>
