@@ -36,13 +36,6 @@
                                 source="projects.options"
                                 :name="i18n('Project')"/>
         </div>
-        <div class="column is-narrow is-one-fifth">
-            <enso-select-filter class="box raises-on-hover"
-                                source="activities.options"
-                                v-model="filters.tasks.activity_id"
-                                :params="{project_id: project}"
-                                :name="i18n('Activity')"/>
-        </div>
     </div>
     <div class="columns is-centered ">
         <div class="column is-narrow">
