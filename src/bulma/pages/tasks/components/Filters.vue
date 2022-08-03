@@ -31,8 +31,7 @@
     </div>
     <div class="columns is-centered">
         <div class="column is-narrow">
-            <enso-date-filter 
-                class="box raises-on-hover" 
+            <enso-date-filter class="box raises-on-hover" 
                 v-model:filter="params.dateFilter"
                 v-model:interval="intervals.tasks.reminder"/>
         </div>
@@ -47,7 +46,6 @@ import {
 import { faFlag, faExclamation } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { EnsoSelect } from '@enso-ui/select/bulma';
-
 
 library.add(faFlag, faExclamation);
 
@@ -92,7 +90,6 @@ export default {
                 class: `has-text-${this.enums.flags._get(flag).toLowerCase()}`,
             }));
         },
-
     },
 };
 </script>
