@@ -5,36 +5,36 @@
                 v-model="filters.tasks.allocated_to"
                 source="administration.users.options"
                 label="person.name"
-                :name="i18n('Allocated To')" />
+                :name="i18n('Allocated To')"/>
         </div>
         <div class="column is-narrow flags-filter">
-            <enso-filter class="box raises-on-hover" 
+            <enso-filter class="box raises-on-hover"
                 v-model="filters.tasks.flag"
-                icons 
+                icons
                 :options="flagOptions"
-                :name="i18n('Importance')" />
+                :name="i18n('Importance')"/>
         </div>
         <div class="column is-narrow is-2">
             <enso-select-filter
-                class="box raises-on-hover "
+                class="box raises-on-hover"
                 v-model="filters.tasks.status"
                 :options="enums.statuses._select()" 
-                :name="i18n('Status')" />
+                :name="i18n('Status')"/>
         </div>
         <div class="column is-narrow">
-            <enso-filter class="box raises-on-hover" 
-                v-model="params.overdue" 
-                icons 
+            <enso-filter class="box raises-on-hover"
+                v-model="params.overdue"
+                icons
                 :options="overdueOptions"
-                :name="i18n('Overdue')" />
+                :name="i18n('Overdue')"/>
         </div>
     </div>
-    <div class="columns is-centered ">
+    <div class="columns is-centered">
         <div class="column is-narrow">
             <enso-date-filter 
                 class="box raises-on-hover" 
                 v-model:filter="params.dateFilter"
-                v-model:interval="intervals.tasks.reminder" />
+                v-model:interval="intervals.tasks.reminder"/>
         </div>
     </div>
 </template>

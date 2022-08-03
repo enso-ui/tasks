@@ -5,10 +5,10 @@
                 v-for="checklist in filteredChecklists" 
                 :key="checklist.id">
                 <checklist-item 
-                    :id="id" 
+                    :id="id"
                     @change-status="createForm = false" :checklist="checklist"
                     :create-form="createForm" 
-                    ref="checklist" />
+                    ref="checklist"/>
             </div>
         </div>
         <div v-show="createForm" class="mt-3">
@@ -18,26 +18,26 @@
                 rows="2" 
                 placeholder="Add new to-do">
             <div class="mt-3">
-                <button 
-                    class="button is-rounded 
+                <button
+                    class="button is-rounded
                     is-small is-bold mr-1 action" 
                     @click="createForm = false">
                     <span>
                         {{ i18n('Cancel') }}
                     </span>
                     <span class="icon is-small">
-                        <fa icon="ban" />
+                        <fa icon="ban"/>
                     </span>
                 </button>
                 <button 
-                    class="button is-rounded 
+                    class="button is-rounded
                     is-small is-bold is-success action" 
                     @click="create">
                     <span>
                         {{ i18n('Save') }}
                     </span>
                     <span class="icon">
-                        <fa icon="check" />
+                        <fa icon="check"/>
                     </span>
                 </button>
             </div>
@@ -47,7 +47,7 @@
             is-clickable" 
             @click="createForm = true;">
             <span class="icon is-small">
-                <fa icon="plus" />
+                <fa icon="plus"/>
             </span>
             Add an Item
         </div>

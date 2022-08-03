@@ -31,7 +31,7 @@
                         {{ i18n('Cancel') }}
                     </span>
                     <span class="icon is-small">
-                        <fa icon="ban" />
+                        <fa icon="ban"/>
                     </span>
                 </button>
                 <button 
@@ -42,7 +42,7 @@
                         {{ i18n('Update') }}
                     </span>
                     <span class="icon">
-                        <fa icon="check" />
+                        <fa icon="check"/>
                     </span>
                 </button>
             </div>
@@ -60,8 +60,9 @@
 <script>
 import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCheck, faPencilAlt, faTimes, faGripLines } 
-    from '@fortawesome/free-solid-svg-icons';
+import { 
+    faCheck, faPencilAlt, faTimes, faGripLines 
+} from '@fortawesome/free-solid-svg-icons';
 import { mapState } from "vuex";
 
 library.add([
