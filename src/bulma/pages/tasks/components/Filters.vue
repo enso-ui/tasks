@@ -1,47 +1,67 @@
 <template>
     <div class="columns is-centered is-multiline">
-        <div class="column is-narrow">
-            <enso-select-filter class="box raises-on-hover allocation-filter"
-                v-model="filters.tasks.allocated_to"
-                source="administration.users.options"
-                label="person.name"
-                :name="i18n('Allocated To')"/>
+        <div class="column is-narrow is-one-fifth">
+            <enso-select-filter class="box raises-on-hover"
+                                v-model="filters.tasks.allocated_to"
+                                source="administration.users.options"
+                                label="person.name"
+                                :name="i18n('Allocated To')"/>
         </div>
         <div class="column is-narrow flags-filter">
             <enso-filter class="box raises-on-hover"
-                v-model="filters.tasks.flag"
-                icons
-                :options="flagOptions"
-                :name="i18n('Importance')"/>
+                         v-model="filters.tasks.flag"
+                         icons
+                         :options="flagOptions"
+                         :name="i18n('Importance')"/>
         </div>
-        <div class="column is-narrow">
-            <boolean-filter class="box raises-on-hover"
-                v-model="filters.tasks.completed"
-                icons
-                :name="i18n('Completed')"/>
+        <div class="column is-narrow is-2">
+            <enso-select-filter class="box raises-on-hover "
+                                v-model="filters.tasks.status"
+                                :options="enums.statuses._select()"
+                                :name="i18n('Status')"/>
         </div>
         <div class="column is-narrow">
             <enso-filter class="box raises-on-hover"
-                v-model="params.overdue"
-                icons
-                :options="overdueOptions"
-                :name="i18n('Overdue')"/>
+                         v-model="params.overdue"
+                         icons
+                         :options="overdueOptions"
+                         :name="i18n('Overdue')"/>
         </div>
+
+    </div>
+    <div class="columns is-centered is-multline">
+        <div class="column is-narrow is-one-fifth">
+            <enso-select-filter class="box raises-on-hover"
+                                v-model="project"
+                                source="projects.options"
+                                :name="i18n('Project')"/>
+        </div>
+        <div class="column is-narrow is-one-fifth">
+            <enso-select-filter class="box raises-on-hover"
+                                source="activities.options"
+                                v-model="filters.tasks.activity_id"
+                                :params="{project_id: project}"
+                                :name="i18n('Activity')"/>
+        </div>
+    </div>
+    <div class="columns is-centered ">
         <div class="column is-narrow">
             <enso-date-filter class="box raises-on-hover"
-                v-model:filter="params.dateFilter"
-                v-model:interval="intervals.tasks.reminder"/>
+                              v-model:filter="params.dateFilter"
+                              v-model:interval="intervals.tasks.reminder"/>
         </div>
     </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import {mapState} from 'vuex';
 import {
     BooleanFilter, EnsoDateFilter, EnsoFilter, EnsoSelectFilter,
 } from '@enso-ui/filters/bulma';
-import { faFlag, faExclamation } from '@fortawesome/free-solid-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core';
+import {faFlag, faExclamation} from '@fortawesome/free-solid-svg-icons';
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {EnsoSelect} from '@enso-ui/select/bulma';
+
 
 library.add(faFlag, faExclamation);
 
@@ -49,7 +69,7 @@ export default {
     name: 'Filters',
 
     components: {
-        BooleanFilter, EnsoDateFilter, EnsoFilter, EnsoSelectFilter,
+        BooleanFilter, EnsoDateFilter, EnsoFilter, EnsoSelectFilter, EnsoSelect
     },
 
     inject: ['i18n'],
@@ -70,8 +90,9 @@ export default {
     },
 
     data: () => ({
+        project: null,
         overdueOptions: [
-            { value: true, icon: 'exclamation', class: 'has-text-danger' },
+            {value: true, icon: 'exclamation', class: 'has-text-danger'},
         ],
     }),
 
@@ -86,12 +107,10 @@ export default {
                 class: `has-text-${this.enums.flags._get(flag).toLowerCase()}`,
             }));
         },
+
     },
 };
 </script>
 
 <style lang="scss">
-.allocation-filter {
-    width: 250px;
-}
 </style>
