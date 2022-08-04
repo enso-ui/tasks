@@ -2,21 +2,6 @@
     <div class="columns is-centered is-multiline">
         <div class="column is-narrow">
             <enso-select-filter class="box raises-on-hover allocation-filter"
-                v-model="project"
-                source="administration.projects.options"
-                label="name"
-                :name="i18n('Project')"/>
-        </div>
-        <div class="column is-narrow">
-            <enso-select-filter class="box raises-on-hover allocation-filter"
-                v-model="filters.tasks.activity_id"
-                :params="{ project_id: project }"
-                source="administration.activities.options"
-                label="name"
-                :name="i18n('Activity')"/>
-        </div>
-        <div class="column is-narrow">
-            <enso-select-filter class="box raises-on-hover allocation-filter"
                 v-model="filters.tasks.allocated_to"
                 source="administration.users.options"
                 label="person.name"
@@ -82,7 +67,6 @@ export default {
         overdueOptions: [
             { value: true, icon: 'exclamation', class: 'has-text-danger' },
         ],
-        project: null,
     }),
 
     computed: {
