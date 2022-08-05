@@ -4,14 +4,14 @@
             {{ i18n('Checklist') }}
             <a class="has-background-white has-text-grey-dark">
                 <span class="tag is-dark counter">
-                    {{ task.completedChecklist.percentageString }}
+                    {{ task.completedChecklist }}
                 </span>
             </a>
         </h4>
 
         <div class="columns is-multiline is-mobile is-gaples">
             <ChecklistItem
-                v-for="(checklist, index) in task.checklist"
+                v-for="(checklist, index) in task.taskChecklistItems"
                 :key="checklist.id"
                 :checklist="checklist"
                 :task="task"
