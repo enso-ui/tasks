@@ -197,7 +197,7 @@ export default {
             }).then(({ data: { message } }) => {
                 this.toastr.success(message);
                 this.$refs.table.fetch();
-            }).catch(errorHandler);
+            }).catch(this.errorHandler);
         },
     },
 };
