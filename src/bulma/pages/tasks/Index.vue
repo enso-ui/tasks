@@ -23,77 +23,88 @@
                 </span>
             </template>
             <template #flag="{ row, column }">
-                <dropdown :triggers="['click']"
-                    :ref="`flag-${row.id}`">
-                    <span class="icon is-clickable"
-                        :class="`has-text-${column.enum._get(row.flag).toLowerCase()}`"
-                        v-if="column.enum._get(row.flag)">
-                        <fa icon="flag"/>
-                    </span>
-                    <span class="icon is-naked is-clickable is-small"
-                        v-else>
-                        <fa icon="cog"
-                            size="xs"/>
-                    </span>
-                    <template #popper>
-                        <flags v-model="row.flag"
-                            @update:model-value="
-                                update(row.id, 'flag', row.flag);
-                                $refs[`flag-${row.id}`].hide()
-                            "/>
-                    </template>
-                </dropdown>
+                 <div class="is-flex is-justify-content-center">
+                    <dropdown :triggers="['click']"
+                        :ref="`flag-${row.id}`">
+                        <span class="icon is-clickable has-text-centered"
+                            :class="`has-text-${flagColor(column, row)}`"
+                            v-if="column.enum._get(row.flag)">
+                            <fa icon="flag"/>
+                        </span>
+                        <span class="icon is-naked is-clickable is-small has-text-centered"
+                            v-else>
+                            <fa icon="cog"
+                                size="xs"/>
+                        </span>
+                        <template #popper>
+                            <flags v-model="row.flag"
+                                @update:model-value="
+                                    update(row.id, 'flag', row.flag);
+                                    $refs[`flag-${row.id}`].hide()
+                                "/>
+                        </template>
+                    </dropdown>
+                </div>
             </template>
             <template #reminder="{ row }">
-                <dropdown :triggers="['click']"
-                    :auto-hide="false"
-                    :ref="`reminder-${row.id}`">
-                    <span class="icon is-clickable"
-                        :class="row.overdue ? 'has-text-danger' : 'has-text-success'"
-                        v-tooltip="row.reminder"
-                        v-if="row.reminder">
-                        <fa icon="clock"/>
-                    </span>
-                    <span class="icon is-naked is-clickable is-small"
-                        v-else>
-                        <fa icon="cog"
-                            size="xs"/>
-                    </span>
-                    <template #popper>
-                        <enso-datepicker class="reminder-picker"
-                            v-click-outside="() => {
-                                update(row.id, 'reminder', row.rawReminder);
-                                $refs[`reminder-${row.id}`].hide();
-                            }"
-                            v-model="row.rawReminder"
-                            format="Y-m-d H:i:s"
-                            time
-                            :alt-format="dateFormat"/>
-                    </template>
-                </dropdown>
+                <div class="is-flex is-justify-content-center">
+                    <dropdown :triggers="['click']"
+                        :auto-hide="false"
+                        :ref="`reminder-${row.id}`">
+                        <div class="is-flex is-align-items-center">
+                            <span class="icon"
+                                :class="row.overdue ? 'has-text-danger' : 'has-text-success'"
+                                v-if="row.reminder">
+                                <fa icon="clock"/>
+                            </span>
+                            <span class="ml-1" v-if="row.reminder">
+                                {{ row.reminder }}
+                            </span>
+                            <span class="icon is-naked is-clickable is-small"
+                            v-else>
+                                <fa icon="cog" size="xs"/>
+                            </span>
+                        </div>
+                        <template #popper>
+                            <enso-datepicker class="reminder-picker"
+                                v-model="row.reminder"
+                                @update:model-value="
+                                    update(row.id, 'reminder', row.reminder);
+                                "
+                                v-click-outside="() => {
+                                    $refs[`reminder-${row.id}`].hide();
+                                }"
+                                format="Y-m-d H:i:s"
+                                time
+                                :alt-format="dateFormat"/>
+                        </template>
+                    </dropdown>
+                </div>
             </template>
             <template #allocatedTo="{ row }">
-                <dropdown :triggers="['click']"
-                    :ref="`allocated_to-${row.id}`"
-                    v-if="canChangeAllocation">
-                    <avatar class="is-24x24 is-clickable"
-                        :user="row.allocatedTo"/>
-                    <template #popper>
-                        <div class="allocated-to">
-                            <enso-select v-model="row.allocatedTo.id"
-                                @select="
-                                    update(row.id, 'allocated_to', row.allocatedTo.id);
-                                    $refs[`allocated_to-${row.id}`].hide();
-                                "
-                                source="tasks.users"
-                                disable-clear
-                                label="person.name"/>
-                        </div>
-                    </template>
-                </dropdown>
-                <avatar class="is-24x24"
-                    :user="row.allocatedTo"
-                    v-else/>
+                <div class="is-flex is-justify-content-center">
+                    <dropdown :triggers="['click']"
+                        :ref="`allocated_to-${row.id}`"
+                        v-if="canChangeAllocation">
+                        <avatar class="is-24x24 is-clickable"
+                            :user="row.allocatedTo"/>
+                        <template #popper>
+                            <div class="allocated-to">
+                                <enso-select v-model="row.allocatedTo.id"
+                                    @select="
+                                        update(row.id, 'allocated_to', row.allocatedTo.id);
+                                        $refs[`allocated_to-${row.id}`].hide();
+                                    "
+                                    source="tasks.users"
+                                    disable-clear
+                                    label="person.name"/>
+                            </div>
+                        </template>
+                    </dropdown>
+                    <avatar class="is-24x24"
+                        :user="row.allocatedTo"
+                        v-else/>
+                </div>
             </template>
             <template #completed="{ row }">
                 <div class="is-flex is-justify-content-center">
@@ -197,7 +208,21 @@ export default {
             }).then(({ data: { message } }) => {
                 this.toastr.success(message);
                 this.$refs.table.fetch();
-            }).catch(errorHandler);
+            }).catch(this.errorHandler);
+        },
+        flagColor(column, { flag }) {
+            switch (`${flag}`) {
+            case column.enum.Success:
+                return 'success';
+            case column.enum.Info:
+                return 'info';
+            case column.enum.Warning:
+                return 'warning';
+            case column.enum.Danger:
+                return 'danger';
+            default:
+                throw Error(`Unknown flag color: ${flag}`);
+            }
         },
     },
 };
