@@ -27,7 +27,7 @@
                     <dropdown :triggers="['click']"
                         :ref="`flag-${row.id}`">
                         <span class="icon is-clickable has-text-centered"
-                            :class="`has-text-${column.enum._get(row.flag).toLowerCase()}`"
+                            :class="`has-text-${flagColor(column, row)}`"
                             v-if="column.enum._get(row.flag)">
                             <fa icon="flag"/>
                         </span>
@@ -209,6 +209,20 @@ export default {
                 this.toastr.success(message);
                 this.$refs.table.fetch();
             }).catch(this.errorHandler);
+        },
+        flagColor(column, { flag }) {
+            switch (`${flag}`) {
+            case column.enum.Success:
+                return 'success';
+            case column.enum.Info:
+                return 'info';
+            case column.enum.Warning:
+                return 'warning';
+            case column.enum.Danger:
+                return 'danger';
+            default:
+                throw Error(`Unknown flag color: ${flag}`);
+            }
         },
     },
 };

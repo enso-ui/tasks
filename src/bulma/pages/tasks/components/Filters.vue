@@ -83,8 +83,25 @@ export default {
                 icon: 'flag',
                 value: flag * 1,
                 // eslint-disable-next-line no-underscore-dangle
-                class: `has-text-${this.enums.flags._get(flag).toLowerCase()}`,
+                class: `has-text-${this.flagColor(flag)}`,
             }));
+        },
+    },
+
+    methods: {
+        flagColor(flag) {
+            switch (flag) {
+            case this.enums.flags.Success:
+                return 'success';
+            case this.enums.flags.Info:
+                return 'info';
+            case this.enums.flags.Warning:
+                return 'warning';
+            case this.enums.flags.Danger:
+                return 'danger';
+            default:
+                throw Error(`Unknown flag color: ${flag}`);
+            }
         },
     },
 };
