@@ -5,6 +5,7 @@
                 overdue, pending, tasks, visitTask, visitTasks,
             }">
             <navbar-item icon="tasks"
+            <navbar-item :icon="faTasks"
                 :loading="loading"
                 @show="fetch"
                 @touch="visitTasks"
@@ -34,18 +35,18 @@
                                 </span>
                                 <span class="icon is-small has-text-info is-clickable"
                                     v-tooltip="task.description">
-                                    <fa icon="info-circle"
+                                    <fa :icon="faCircleInfo"
                                         size="xs"/>
                                 </span>
                                 <span class="icon task-reminder"
                                     :class="task.overdue ? 'has-text-danger' : 'has-text-success'"
                                     v-tooltip="task.reminder ? dateTime(task.reminder) : null">
-                                    <fa icon="clock"
+                                    <fa :icon="faClock"
                                         v-if="task.reminder"/>
                                 </span>
                                 <span class="icon task-flag"
                                     :class="task.flag ? flagClass(task.flag) : null">
-                                    <fa icon="flag"
+                                    <fa :icon="faFlag"
                                         v-if="task.flag"/>
                                 </span>
                             </p>
@@ -60,7 +61,7 @@
                                 @click.once="visitTasks();$refs.navbarItem.hide()">
                                 <span>{{ i18n("See all") }}</span>
                                 <span class="icon is-small">
-                                    <fa icon="eye"/>
+                                    <fa :icon="faEye"/>
                                 </span>
                             </a>
                         </div>
@@ -81,14 +82,11 @@
 <script>
 import { clickOutside } from '@enso-ui/directives';
 import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import {
-    faEye, faClock, faFlag, faTasks,
+    faCircleInfo, faClock, faEye, faFlag, faTasks,
 } from '@fortawesome/free-solid-svg-icons';
 import NavbarItem from '@enso-ui/ui/src/bulma/components/navbar/NavbarItem.vue';
 import CoreTasks from '../../../core/components/navbar/Tasks.vue';
-
-library.add(faEye, faTasks, faClock, faFlag);
 
 export default {
     name: 'Tasks',
@@ -98,6 +96,14 @@ export default {
     components: { CoreTasks, Fa, NavbarItem },
 
     inject: ['i18n'],
+
+    data: () => ({
+        faCircleInfo,
+        faClock,
+        faEye,
+        faFlag,
+        faTasks,
+    }),
 };
 
 </script>

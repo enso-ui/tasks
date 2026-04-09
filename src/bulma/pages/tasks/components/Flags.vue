@@ -10,14 +10,14 @@
                             <a @click="$emit('update:modelValue', id)">
                                 <span class="icon"
                                     :class="`has-text-${flag.toLowerCase()}`">
-                                    <fa icon="flag"/>
+                                    <fa :icon="faFlag"/>
                                 </span>
                             </a>
                         </li>
                         <li :class="{ 'is-active': !modelValue }">
                             <a @click="$emit('update:modelValue', null)">
                                 <span class="icon has-text-black">
-                                    <fa icon="times"/>
+                                    <fa :icon="faXmark"/>
                                 </span>
                             </a>
                         </li>
@@ -29,17 +29,19 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { useStore } from '../../../utils/pinia';
 import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faFlag, faTimes } from '@fortawesome/free-solid-svg-icons';
-
-library.add(faFlag, faTimes);
+import { faFlag, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 export default {
     name: 'Flags',
 
     components: { Fa },
+
+    data: () => ({
+        faFlag,
+        faXmark,
+    }),
 
     props: {
         modelValue: {
@@ -51,7 +53,11 @@ export default {
 
     emits: ['update:modelValue'],
 
-    computed: mapState(['enums']),
+    computed: {
+        enums() {
+            return useStore('enums').enums;
+        },
+    },
 };
 </script>
 <style lang="scss">

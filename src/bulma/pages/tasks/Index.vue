@@ -4,7 +4,7 @@
             :intervals="intervals"
             :params="params"
             v-if="ready"/>
-        <enso-table class="box is-paddingless raises-on-hover"
+        <enso-table class="box p-0"
             :filters="filters"
             :intervals="intervals"
             :params="params"
@@ -18,7 +18,7 @@
                 </span>
                 <span class="icon is-small has-text-info is-clickable"
                     v-tooltip="row.description">
-                    <fa icon="info-circle"
+                    <fa :icon="faCircleInfo"
                         size="xs"/>
                 </span>
             </template>
@@ -29,11 +29,11 @@
                         <span class="icon is-clickable has-text-centered"
                             :class="`has-text-${flagColor(column, row)}`"
                             v-if="column.enum._get(row.flag)">
-                            <fa icon="flag"/>
+                            <fa :icon="faFlag"/>
                         </span>
                         <span class="icon is-naked is-clickable is-small has-text-centered"
                             v-else>
-                            <fa icon="cog"
+                            <fa :icon="faGear"
                                 size="xs"/>
                         </span>
                         <template #popper>
@@ -55,14 +55,14 @@
                             <span class="icon"
                                 :class="row.overdue ? 'has-text-danger' : 'has-text-success'"
                                 v-if="row.reminder">
-                                <fa icon="clock"/>
+                                <fa :icon="faClock"/>
                             </span>
                             <span class="ml-1" v-if="row.reminder">
                                 {{ row.reminder }}
                             </span>
                             <span class="icon is-naked is-clickable is-small"
                             v-else>
-                                <fa icon="cog" size="xs"/>
+                                <fa :icon="faGear" size="xs"/>
                             </span>
                         </div>
                         <template #popper>
@@ -128,22 +128,19 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import { FilterState } from '@enso-ui/filters/renderless';
 import { EnsoTable } from '@enso-ui/tables/bulma';
 import { EnsoSelect } from '@enso-ui/select/bulma';
 import VueSwitch from '@enso-ui/switch/bulma';
 import { EnsoDatepicker } from '@enso-ui/datepicker/bulma';
 import { Avatar } from '@enso-ui/users';
+import { useStore } from '../../utils/pinia';
 import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faClock, faInfoCircle, faCog } from '@fortawesome/free-solid-svg-icons';
+import { faCircleInfo, faClock, faFlag, faGear } from '@fortawesome/free-solid-svg-icons';
 import { Dropdown } from 'v-tooltip';
 import { clickOutside } from '@enso-ui/directives';
 import Filters from './components/Filters.vue';
 import Flags from './components/Flags.vue';
-
-library.add(faClock, faInfoCircle, faCog);
 
 export default {
     name: 'Index',
@@ -167,6 +164,10 @@ export default {
 
     data: () => ({
         apiVersion: 2,
+        faCircleInfo,
+        faClock,
+        faFlag,
+        faGear,
         ready: false,
         filters: {
             tasks: {
@@ -190,7 +191,15 @@ export default {
     }),
 
     computed: {
-        ...mapState(['enums', 'user', 'meta']),
+        enums() {
+            return useStore('enums').enums;
+        },
+        user() {
+            return useStore('app').user;
+        },
+        meta() {
+            return useStore('app').meta;
+        },
         canChangeAllocation() {
             return [
                 this.enums.roles.Admin, this.enums.roles.Supervisor,

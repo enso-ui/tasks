@@ -1,7 +1,7 @@
 <script>
 import { debounce } from 'lodash';
-import { mapState, mapGetters, mapActions } from 'vuex';
 import format from '@enso-ui/ui/src/modules/plugins/date-fns/format';
+import { useStore } from '../../../utils/pinia';
 
 export default {
     name: 'Tasks',
@@ -25,9 +25,18 @@ export default {
     }),
 
     computed: {
-        ...mapGetters('websockets', ['channels']),
-        ...mapState('layout', ['isTouch']),
-        ...mapState(['enums', 'meta']),
+        channels() {
+            return useStore('websockets').channels;
+        },
+        enums() {
+            return useStore('enums').enums;
+        },
+        isTouch() {
+            return useStore('layout').isTouch;
+        },
+        meta() {
+            return useStore('app').meta;
+        },
     },
 
     created() {

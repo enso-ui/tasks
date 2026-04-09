@@ -1,34 +1,34 @@
 <template>
     <div class="columns is-centered is-multiline">
         <div class="column is-narrow">
-            <enso-select-filter class="box raises-on-hover allocation-filter"
+            <enso-select-filter class="box allocation-filter"
                 v-model="filters.tasks.allocated_to"
                 source="administration.users.options"
                 label="person.name"
                 :name="i18n('Allocated To')"/>
         </div>
         <div class="column is-narrow flags-filter">
-            <enso-filter class="box raises-on-hover"
+            <enso-filter class="box"
                 v-model="filters.tasks.flag"
                 icons
                 :options="flagOptions"
                 :name="i18n('Importance')"/>
         </div>
         <div class="column is-narrow">
-            <boolean-filter class="box raises-on-hover"
+            <boolean-filter class="box"
                 v-model="filters.tasks.completed"
                 icons
                 :name="i18n('Completed')"/>
         </div>
         <div class="column is-narrow">
-            <enso-filter class="box raises-on-hover"
+            <enso-filter class="box"
                 v-model="params.overdue"
                 icons
                 :options="overdueOptions"
                 :name="i18n('Overdue')"/>
         </div>
         <div class="column is-narrow">
-            <enso-date-filter class="box raises-on-hover"
+            <enso-date-filter class="box"
                 v-model:filter="params.dateFilter"
                 v-model:interval="intervals.tasks.reminder"/>
         </div>
@@ -36,14 +36,11 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { useStore } from '../../../utils/pinia';
 import {
     BooleanFilter, EnsoDateFilter, EnsoFilter, EnsoSelectFilter,
 } from '@enso-ui/filters/bulma';
 import { faFlag, faExclamation } from '@fortawesome/free-solid-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core';
-
-library.add(faFlag, faExclamation);
 
 export default {
     name: 'Filters',
@@ -71,16 +68,18 @@ export default {
 
     data: () => ({
         overdueOptions: [
-            { value: true, icon: 'exclamation', class: 'has-text-danger' },
+            { value: true, icon: faExclamation, class: 'has-text-danger' },
         ],
     }),
 
     computed: {
-        ...mapState(['enums']),
+        enums() {
+            return useStore('enums').enums;
+        },
         flagOptions() {
             // eslint-disable-next-line no-underscore-dangle
             return this.enums.flags._keys().map(flag => ({
-                icon: 'flag',
+                icon: faFlag,
                 value: flag * 1,
                 // eslint-disable-next-line no-underscore-dangle
                 class: `has-text-${this.flagColor(flag)}`,
