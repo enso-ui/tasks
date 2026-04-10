@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { useStore } from '../../../utils/pinia';
+import { useStore } from '../../../../utils/pinia';
 import {
     BooleanFilter, EnsoDateFilter, EnsoFilter, EnsoSelectFilter,
 } from '@enso-ui/filters/bulma';

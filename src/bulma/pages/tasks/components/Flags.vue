@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { useStore } from '../../../utils/pinia';
+import { useStore } from '../../../../utils/pinia';
 import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
 import { faFlag, faXmark } from '@fortawesome/free-solid-svg-icons';
 
