@@ -1,7 +1,10 @@
 <script>
 import { debounce } from 'lodash';
+import { enums as useEnums } from '@enso-ui/enums/src/pinia/enums';
+import { app as useApp } from '@enso-ui/ui/src/pinia/app';
 import format from '@enso-ui/ui/src/modules/plugins/date-fns/format';
-import { useStore } from '../../../utils/pinia';
+import { layout as useLayout } from '@enso-ui/ui/src/pinia/layout';
+import { websockets as useWebsockets } from '@enso-ui/ui/src/pinia/websockets';
 
 export default {
     name: 'Tasks',
@@ -26,16 +29,16 @@ export default {
 
     computed: {
         channels() {
-            return useStore('websockets').channels;
+            return useWebsockets().channels;
         },
         enums() {
-            return useStore('enums').enums;
+            return useEnums().enums;
         },
         isTouch() {
-            return useStore('layout').isTouch;
+            return useLayout().isTouch;
         },
         meta() {
-            return useStore('app').meta;
+            return useApp().meta;
         },
     },
 

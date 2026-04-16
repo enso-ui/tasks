@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { useStore } from '../../../../utils/pinia';
+import { enums as useEnums } from '@enso-ui/enums/src/pinia/enums';
 import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
 import { faFlag, faXmark } from '@fortawesome/free-solid-svg-icons';
 
@@ -55,7 +55,7 @@ export default {
 
     computed: {
         enums() {
-            return useStore('enums').enums;
+            return useEnums().enums;
         },
     },
 };

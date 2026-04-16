@@ -134,7 +134,8 @@ import { EnsoSelect } from '@enso-ui/select/bulma';
 import VueSwitch from '@enso-ui/switch/bulma';
 import { EnsoDatepicker } from '@enso-ui/datepicker/bulma';
 import { Avatar } from '@enso-ui/users';
-import { useStore } from '../../../utils/pinia';
+import { enums as useEnums } from '@enso-ui/enums/src/pinia/enums';
+import { app as useApp } from '@enso-ui/ui/src/pinia/app';
 import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
 import { faCircleInfo, faClock, faFlag, faGear } from '@fortawesome/free-solid-svg-icons';
 import { Dropdown } from 'v-tooltip';
@@ -192,13 +193,13 @@ export default {
 
     computed: {
         enums() {
-            return useStore('enums').enums;
+            return useEnums().enums;
         },
         user() {
-            return useStore('app').user;
+            return useApp().user;
         },
         meta() {
-            return useStore('app').meta;
+            return useApp().meta;
         },
         canChangeAllocation() {
             return [
