@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { enums as useEnums } from '@enso-ui/enums/src/pinia/enums';
+import { enums } from '@enso-ui/enums/src/pinia/enums';
 import {
     BooleanFilter, EnsoDateFilter, EnsoFilter, EnsoSelectFilter,
 } from '@enso-ui/filters/bulma';
@@ -74,7 +74,7 @@ export default {
 
     computed: {
         enums() {
-            return useEnums().enums;
+            return enums().enums;
         },
         flagOptions() {
             // eslint-disable-next-line no-underscore-dangle
