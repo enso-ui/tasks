@@ -1,60 +1,60 @@
 {
-  "name": "@enso-ui/tasks",
-  "version": "5.1.7",
-  "description": "Basic tasks package",
-  "main": "src/bulma/pages/tasks/Index.vue",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/enso-ui/tasks.git"
-  },
-  "keywords": [
-    "tasks",
-    "vue"
-  ],
-  "author": "Adrian Ocneanu <aocneanu@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/enso-ui/tasks/issues"
-  },
-  "homepage": "https://github.com/enso-ui/tasks#readme",
-  "scripts": {
-    "test": "vitest",
-    "test:run": "vitest run"
-  },
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^7.2.0",
-    "@fortawesome/free-solid-svg-icons": "^7.2.0",
-    "@fortawesome/vue-fontawesome": "3.1.3",
-    "lodash": "^4.17.20",
-    "v-tooltip": "^4.0.0-beta.2"
-  },
-  "peerDependencies": {
-    "@enso-ui/datepicker": "^3.1.0",
-    "@enso-ui/directives": "^3.1.0",
-    "@enso-ui/filters": "^3.3.0",
-    "@enso-ui/forms": "^4.1.0",
-    "@enso-ui/select": "^4.1.0",
-    "@enso-ui/switch": "^2.1.0",
-    "@enso-ui/tables": "^4.1.0",
-    "@enso-ui/ui": "^7.1.0",
-    "@enso-ui/users": "^3.1.0",
-    "vue": "^3.5.0"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.1",
-    "@enso-ui/enums": "^2.1.0",
-    "@enso-ui/datepicker": "^3.1.0",
-    "@enso-ui/directives": "^3.1.0",
-    "@enso-ui/filters": "^3.3.0",
-    "@enso-ui/forms": "^4.1.0",
-    "@enso-ui/select": "^4.1.0",
-    "@enso-ui/switch": "^2.1.0",
-    "@enso-ui/tables": "^4.1.0",
-    "@enso-ui/ui": "^7.1.0",
-    "@enso-ui/users": "^3.1.0",
-    "jsdom": "^26.1.0",
-    "sass-embedded": "^1.93.2",
-    "vitest": "^3.2.4",
-    "vue": "^3.5.0"
-  }
+    "name": "@enso-ui/tasks",
+    "version": "5.1.7",
+    "description": "Task management pages for Enso UI.",
+    "main": "src/bulma/pages/tasks/Index.vue",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/enso-ui/tasks.git"
+    },
+    "keywords": [
+        "tasks",
+        "vue"
+    ],
+    "author": "Adrian Ocneanu <aocneanu@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/enso-ui/tasks/issues"
+    },
+    "homepage": "https://github.com/enso-ui/tasks#readme",
+    "scripts": {
+        "test": "vitest",
+        "test:run": "vitest run"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^7.2.0",
+        "@fortawesome/free-solid-svg-icons": "^7.2.0",
+        "@fortawesome/vue-fontawesome": "3.1.3",
+        "lodash": "^4.17.20",
+        "v-tooltip": "^4.0.0-beta.2"
+    },
+    "peerDependencies": {
+        "@enso-ui/datepicker": "^3.1.0",
+        "@enso-ui/directives": "^3.1.0",
+        "@enso-ui/filters": "^3.3.0",
+        "@enso-ui/forms": "^4.1.0",
+        "@enso-ui/select": "^4.1.0",
+        "@enso-ui/switch": "^2.1.0",
+        "@enso-ui/tables": "^4.1.0",
+        "@enso-ui/ui": "^7.1.0",
+        "@enso-ui/users": "^3.1.0",
+        "vue": "^3.5.0"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^6.0.1",
+        "@enso-ui/enums": "^2.1.0",
+        "@enso-ui/datepicker": "^3.1.0",
+        "@enso-ui/directives": "^3.1.0",
+        "@enso-ui/filters": "^3.3.0",
+        "@enso-ui/forms": "^4.1.0",
+        "@enso-ui/select": "^4.1.0",
+        "@enso-ui/switch": "^2.1.0",
+        "@enso-ui/tables": "^4.1.0",
+        "@enso-ui/ui": "^7.1.0",
+        "@enso-ui/users": "^3.1.0",
+        "jsdom": "^26.1.0",
+        "sass-embedded": "^1.93.2",
+        "vitest": "^3.2.4",
+        "vue": "^3.5.0"
+    }
 }
