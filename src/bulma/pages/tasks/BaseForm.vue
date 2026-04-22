@@ -1,12 +1,11 @@
 <template>
-    <enso-form class="box form-box">
+    <enso-form class="box form-box has-background-light raises-on-hover">
         <template #flag="{field, errors}">
             <div class="field">
                 <label class="label">
                     {{ i18n(field.label) }}
                 </label>
-                <div class="p-0"
-                    style="background-color: var(--bulma-scheme-main);">
+                <div class="has-background-white is-paddingless">
                     <flags v-model="field.value"/>
                 </div>
                 <p class="help is-danger"

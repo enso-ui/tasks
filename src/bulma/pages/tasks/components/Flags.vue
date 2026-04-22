@@ -16,7 +16,7 @@
                         </li>
                         <li :class="{ 'is-active': !modelValue }">
                             <a @click="$emit('update:modelValue', null)">
-                                <span class="icon has-text-black">
+                                <span class="icon">
                                     <fa icon="times"/>
                                 </span>
                             </a>
