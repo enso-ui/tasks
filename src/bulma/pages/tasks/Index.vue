@@ -4,7 +4,7 @@
             :intervals="intervals"
             :params="params"
             v-if="ready"/>
-        <enso-table class="box is-paddingless raises-on-hover"
+        <enso-table class="box p-0"
             :filters="filters"
             :intervals="intervals"
             :params="params"
@@ -87,6 +87,7 @@
                         :ref="`allocated_to-${row.id}`"
                         v-if="canChangeAllocation">
                         <avatar class="is-24x24 is-clickable"
+                            tooltip
                             :user="row.allocatedTo"/>
                         <template #popper>
                             <div class="allocated-to">
@@ -102,6 +103,7 @@
                         </template>
                     </dropdown>
                     <avatar class="is-24x24"
+                        tooltip
                         :user="row.allocatedTo"
                         v-else/>
                 </div>
