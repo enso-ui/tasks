@@ -1,0 +1,1 @@
+import './bulma/icons.js';
