@@ -5,8 +5,7 @@
                 <label class="label">
                     {{ i18n(field.label) }}
                 </label>
-                <div class="p-0"
-                    style="background-color: var(--bulma-scheme-main);">
+                <div class="p-0 task-flags-surface">
                     <flags v-model="field.value"/>
                 </div>
                 <p class="help is-danger"
@@ -29,3 +28,9 @@ export default {
     inject: ['i18n'],
 };
 </script>
+
+<style lang="scss">
+    .task-flags-surface {
+        background-color: var(--bulma-scheme-main);
+    }
+</style>
