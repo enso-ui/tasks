@@ -1,5 +1,5 @@
 <script>
-import { debounce } from 'lodash';
+import { debounce } from 'lodash-es';
 import { enums } from '@enso-ui/enums/src/pinia/enums';
 import { app } from '@enso-ui/ui/src/pinia/app';
 import format from '@enso-ui/ui/src/modules/plugins/date-fns/format';
