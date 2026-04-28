@@ -1,4 +1,4 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTasks } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faTasks } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faTasks);
+library.add(faBell, faTasks);
