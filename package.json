@@ -1,6 +1,6 @@
 {
     "name": "@enso-ui/tasks",
-    "version": "5.1.12",
+    "version": "5.1.13",
     "description": "Task management pages for Enso UI.",
     "main": "src/bulma/pages/tasks/Index.vue",
     "repository": {
