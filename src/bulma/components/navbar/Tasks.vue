@@ -4,7 +4,6 @@
                 dateTime, events, fetch, flagClass, loading,
                 overdue, pending, tasks, visitTask, visitTasks,
             }">
-            <navbar-item icon="tasks"
             <navbar-item :icon="faTasks"
                 :loading="loading"
                 @show="fetch"
